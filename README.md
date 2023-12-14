@@ -29,7 +29,7 @@ Install trivy
     sudo apt-get update
     sudo apt-get install trivy -y
 
-#Installing prometheus, Grafana & node exporter
+# Installing prometheus, Grafana & node exporter
 Prometheus
 
     sudo useradd --system --no-create-home --shell /bin/false prometheus
