@@ -12,7 +12,7 @@ Installing jenkins
     sudo apt-get update -y
     sudo apt install jenkins -y
     sudo systemctl start jenkins && sudo systemctl enable jenkins
-Install Docker and Run SonarQube as Container\
+Install Docker and Run SonarQube as Container
 
     sudo apt-get update
     sudo apt-get install docker.io -y
@@ -29,7 +29,7 @@ Install trivy
     sudo apt-get update
     sudo apt-get install trivy -y
 
-Installing prometheus, Grafana & node exporter
+#Installing prometheus, Grafana & node exporter
 Prometheus
 
     sudo useradd --system --no-create-home --shell /bin/false prometheus
