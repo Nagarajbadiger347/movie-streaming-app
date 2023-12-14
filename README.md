@@ -1,4 +1,4 @@
-# Project which is integration of DevSecOps
+# Project which is based on deploying a app to kubernetes cluster using Jenkins CI/CD pipeline and monitoring them 
 Installing jenkins
 
     sudo apt-get update -y && sudo apt-get upgrade -y
