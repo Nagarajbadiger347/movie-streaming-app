@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('terraform paln') {
+          steps {
+            script {
+              withCredentials([usernamePassword(credentialsID: 'aws', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                dir('modules/custom_module') {
+                 sh '''
+                  set +x
+                      terraform init
+                      terraform plan
+                      '''
+                    }
+                  }
+              }
+          }
+       }
+    }
+ }
