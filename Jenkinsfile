@@ -19,7 +19,7 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Nagarajbadiger347/DevSecOps.git'
+                git branch: 'main', url: 'https://github.com/Nagarajbadiger347/movie-streaming-app.git'
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('sonarqube-server') {
-                        sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectName=Netflix -Dsonar.projectKey=Netflix"
+                        sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectName=streaming-app -Dsonar.projectKey=streaming-app"
                     }
                 }
             }
@@ -61,20 +61,20 @@ pipeline {
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'Dockerhub', toolName: 'docker'){   
-                       sh "docker build --build-arg TMDB_API_KEY=8410070534f942cb47879ca11a65759c -t netflix ."
-                       sh "docker tag Nagarajb04/netflix:latest "
-                       sh "docker push Nagarajb04/netflix:latest "
+                       sh "docker build --build-arg TMDB_API_KEY=8410070534f942cb47879ca11a65759c -t streaming-app ."
+                       sh "docker tag Nagarajb04/streaming-app:latest "
+                       sh "docker push Nagarajb04/streaming-app:latest "
                     }
                 }
         stage("Trivy "){
             steps{
-                sh "trivy image Nagarajb04/netflix:latest > trivyimage.txt" 
+                sh "trivy image Nagarajb04/streaming-app:latest > trivyimage.txt" 
             }
         }
         
            stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name netflix -p 8081:80 Nagarajb04/netflix:latest'
+                sh 'docker run -d --name streaming-app -p 8081:80 Nagarajb04/streaming-app:latest'
             }
         }
            stage('Deploy to kubernets'){
